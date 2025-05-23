@@ -1,0 +1,18 @@
+services:
+  hw2-backapp:
+    image: cubix-block2-hw-backapp:latest
+    networks:
+      - cubix-internal
+
+  hw2-frontapp:
+    image: cubix-block2-hw-frontapp:latest
+    ports:
+      - '8080:8080'
+    networks:
+      - cubix-internal
+    environment:
+      - BACK_URL=hw2-backapp:8080
+
+networks:
+  cubix-internal:
+    driver: bridge
